@@ -6,7 +6,7 @@
 /*   By: jivan-de <jivan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/10 16:58:38 by jivan-de       #+#    #+#                */
-/*   Updated: 2020/02/20 15:44:56 by jivan-de      ########   odam.nl         */
+/*   Updated: 2020/03/02 13:48:32 by jivan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int		main(int argc, char *argv[])
 		log_error(&cfg, "No config file provided.");
 	if (argc > 3)
 		log_error(&cfg, "Too many arguments");
+	cfg.save = 0;
 	if (argc == 3 && ft_strcmp(argv[2], "--save") == 0)
 		cfg.save = 1;
 	else if (argc == 3)

@@ -6,7 +6,7 @@
 /*   By: jivan-de <jivan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/14 14:38:09 by jivan-de       #+#    #+#                */
-/*   Updated: 2020/02/20 15:35:07 by jivan-de      ########   odam.nl         */
+/*   Updated: 2020/03/09 11:25:58 by jivan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,7 @@
 ** Bitmap
 */
 
-# define BMP_FHSIZE		14
-# define BMP_IHSIZE		40
+# define BMP_HSIZE		54
 # define BMP_BPP		3
 # define BMP_EXPNAME	"frame.bmp"
 # define BMP_SCRNAME	"screenshot.bmp"
@@ -304,6 +303,7 @@ t_vector		vector_new(double x, double y);
 int				in_square(t_vector start, t_vector end, t_vector pos);
 void			r_wipe(char **data);
 void			cleanup(t_config *cfg);
+int				ft_abs(int nbr);
 
 /*
 ** Map File Parser

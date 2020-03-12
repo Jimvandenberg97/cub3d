@@ -6,7 +6,7 @@
 /*   By: jivan-de <jivan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/10 13:25:33 by jivan-de       #+#    #+#                */
-/*   Updated: 2020/02/26 18:03:07 by jivan-de      ########   odam.nl         */
+/*   Updated: 2020/03/09 12:30:40 by jivan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void		sprites_calc(t_config *cfg, t_srender *sr, int i)
 		cfg->player.plane.x * sr->spos.y);
 	sr->screenx = (int)((cfg->width / 2) * (1 + sr->transform.x /
 		sr->transform.y));
-	sr->height = abs((int)(cfg->height / (sr->transform.y)));
+	sr->height = ft_abs((int)(cfg->height / (sr->transform.y)));
 	sr->draw_start.y = sr->height * -1 / 2 + cfg->height / 2;
 	if (sr->draw_start.y < 0)
 		sr->draw_start.y = 0;

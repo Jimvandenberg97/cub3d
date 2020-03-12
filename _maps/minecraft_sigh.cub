@@ -1,0 +1,33 @@
+R 800 800
+
+NO ./textures/minecraft/dirt.xpm
+SO ./textures/minecraft/mossy_cobblestone.xpm
+WE ./textures/minecraft/sandstone_bottom.xpm
+EA ./textures/minecraft/stone_bricks.xpm
+S ./textures/minecraft/grass.xpm
+
+C 210,210,210
+F 69,69,69
+
+     111 111
+    110111011
+   11000000011
+   10000000001
+   11000000011
+    100000001
+    100000001
+    100000001
+    100000001
+    100000001
+    100000001
+    100000001
+    100000001
+    100000001
+    100000001
+  1110000000111
+ 1100000N0000011
+11200000000000211
+12000000000000021
+11200000000000211
+ 112222111222211
+  111111 111111

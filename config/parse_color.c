@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   parse_color.c                                      :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: jivan-de <jivan-de@student.codam.nl>         +#+                     */
+/*   By: jkoopman <jkoopman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/01/15 11:49:36 by jivan-de       #+#    #+#                */
-/*   Updated: 2020/02/26 18:08:44 by jivan-de      ########   odam.nl         */
+/*   Created: 2020/01/15 11:49:36 by jkoopman       #+#    #+#                */
+/*   Updated: 2020/02/26 17:49:55 by jkoopman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 

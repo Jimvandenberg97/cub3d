@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   map_validate.c                                     :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: jivan-de <jivan-de@student.codam.nl>         +#+                     */
+/*   By: jkoopman <jkoopman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/01/16 15:45:53 by jivan-de       #+#    #+#                */
-/*   Updated: 2020/02/20 15:26:02 by jivan-de      ########   odam.nl         */
+/*   Created: 2020/01/16 15:45:53 by jkoopman       #+#    #+#                */
+/*   Updated: 2020/03/04 14:28:27 by jkoopman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 
 static void			flood_fill(t_config *cfg, char **map, int x, int y)
 {
-	if (y > cfg->map_height - 1 || y < 0 || x < 0 || x > (int)ft_strlen(map[y]))
+	if (y > cfg->map_height - 1 || y < 0 || x < 0 ||
+		x >= (int)ft_strlen(map[y]) || map[y][x] == ' ')
 		log_error(cfg, "Invalid map.");
 	if (map[y][x] == '1' || map[y][x] == '0')
 		return ;
@@ -43,17 +44,15 @@ static void			map_setspawn(t_config *cfg, char *line, int row)
 	int col;
 
 	col = 0;
-	while (*line != '\0')
+	while (line[col] != '\0')
 	{
-		if (ft_strchr(CSET_SPAWN, *line) != NULL)
+		if (ft_strchr(CSET_SPAWN, line[col]) != NULL)
 		{
-			spawn_setrotation(cfg, *line);
-			*line = '0';
+			spawn_setrotation(cfg, line[col]);
+			line[col] = '0';
 			break ;
 		}
-		if (*line != ' ')
-			col++;
-		line++;
+		col++;
 	}
 	cfg->player.pos.x = col + 0.5f;
 	cfg->player.pos.y = row + 0.5f;

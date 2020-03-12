@@ -6,7 +6,7 @@
 #    By: jivan-de <jivan-de@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/10/29 11:23:43 by jivan-de       #+#    #+#                 #
-#    Updated: 2020/02/26 17:58:26 by jivan-de      ########   odam.nl          #
+#    Updated: 2020/03/10 10:21:33 by jivan-de      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,7 @@ $(NAME): $(LIBFT) $(MINILIBX) $(OBJECTS)
 	@printf "%b" "$(OK_COLOR)$(OK_STRING)\n$(NO_COLOR)"
 
 $(LIBFT):
-	@printf "%b" "$(COM_COLOR)Yeeting out LibFT...\n$(NO_COLOR)"
+	@printf "%b" "$(COM_COLOR)Rolling out LibFT...\n$(NO_COLOR)"
 	@$(MAKE) -C libft
 	@printf "%b" "$(COM_COLOR)Moving LibFT to root...\n$(NO_COLOR)"
 	@cp libft/$(LIBFT) .

@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: jivan-de <jivan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/11 15:23:06 by jivan-de       #+#    #+#                */
-/*   Updated: 2020/02/27 16:56:46 by jivan-de      ########   odam.nl         */
+/*   Created: 2020/02/27 16:07:15 by jivan-de       #+#    #+#                */
+/*   Updated: 2020/02/27 16:58:07 by jivan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,40 +15,30 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-static unsigned char
-	*bitmap_header(int height, int width, int paddsize)
+static int
+	image_size(int w, int h)
 {
-	static unsigned char	header[BMP_FHSIZE];
-	int						fsize;
+	int	per_line;
 
-	fsize = BMP_FHSIZE + BMP_IHSIZE + (BMP_BPP * width + paddsize) * height;
-	header[0] = (unsigned char)('B');
-	header[1] = (unsigned char)('M');
-	header[2] = (unsigned char)(fsize);
-	header[3] = (unsigned char)(fsize >> 8);
-	header[4] = (unsigned char)(fsize >> 16);
-	header[5] = (unsigned char)(fsize >> 24);
-	header[10] = (unsigned char)(BMP_FHSIZE + BMP_IHSIZE);
-	return (header);
+	per_line = w * BMP_BPP;
+	if (per_line % 4 != 0)
+		per_line += 4 - (per_line % 4);
+	return (per_line * h);
 }
 
-static unsigned char
-	*bitmap_infoheader(int height, int width)
+static void
+	bitmap_header(int fd, int w, int h)
 {
-	static unsigned char header[BMP_IHSIZE];
+	int total_size;
 
-	header[0] = (unsigned char)(BMP_IHSIZE);
-	header[4] = (unsigned char)(width);
-	header[5] = (unsigned char)(width >> 8);
-	header[6] = (unsigned char)(width >> 16);
-	header[7] = (unsigned char)(width >> 24);
-	header[8] = (unsigned char)(height);
-	header[9] = (unsigned char)(height >> 8);
-	header[10] = (unsigned char)(height >> 16);
-	header[11] = (unsigned char)(height >> 24);
-	header[12] = (unsigned char)(1);
-	header[14] = (unsigned char)(BMP_BPP * 8);
-	return (header);
+	write(fd, "BM", 2);
+	total_size = BMP_HSIZE + image_size(w, h);
+	write(fd, &total_size, 4);
+	write(fd, "\0\0\0\0\x36\0\0\0\x28\0\0\0", 12);
+	write(fd, &w, 4);
+	write(fd, &h, 4);
+	write(fd, "\x01\0\x18\0\0\0\0\0\0\0\0\0\0\0\0\
+		\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0", 28);
 }
 
 static int
@@ -63,8 +53,7 @@ static int
 	if (imgfile < 0)
 		return (0);
 	paddsize = (4 - (w * BMP_BPP) % 4) % 4;
-	write(imgfile, bitmap_header(h, w, paddsize), BMP_FHSIZE);
-	write(imgfile, bitmap_infoheader(h, w), BMP_IHSIZE);
+	bitmap_header(imgfile, w, h);
 	i = h - 1;
 	while (i >= 0)
 	{
@@ -76,7 +65,7 @@ static int
 	return (1);
 }
 
-static void 
+static void
 	bitmap_setpixel(t_config *cfg, t_vector pos, int z, unsigned char *image)
 {
 	unsigned char	*ptr;
@@ -108,9 +97,9 @@ void
 		while (pos.x < cfg->width)
 		{
 			cfg->bmp_color = get_screen_px(&cfg->images[0], pos.x, pos.y);
-			bitmap_setpixel(cfg, pos, 2, image);
-			bitmap_setpixel(cfg, pos, 1, image);
 			bitmap_setpixel(cfg, pos, 0, image);
+			bitmap_setpixel(cfg, pos, 1, image);
+			bitmap_setpixel(cfg, pos, 2, image);
 			pos.x++;
 		}
 		pos.y++;

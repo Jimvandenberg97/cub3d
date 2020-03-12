@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   parse_path.c                                       :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: jivan-de <jivan-de@student.codam.nl>         +#+                     */
+/*   By: jkoopman <jkoopman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/01/15 11:25:50 by jivan-de       #+#    #+#                */
-/*   Updated: 2020/02/20 13:55:26 by jivan-de      ########   odam.nl         */
+/*   Created: 2020/01/15 11:25:50 by jkoopman       #+#    #+#                */
+/*   Updated: 2020/02/20 13:55:26 by jkoopman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 

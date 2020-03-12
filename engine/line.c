@@ -6,7 +6,7 @@
 /*   By: jivan-de <jivan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/22 11:48:53 by jivan-de       #+#    #+#                */
-/*   Updated: 2020/02/26 18:01:34 by jivan-de      ########   odam.nl         */
+/*   Updated: 2020/02/28 18:10:31 by jivan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ void			line_put(int x, t_config *cfg, int tex)
 	if (!cfg->options[OPT_CEILTEXT])
 		while (i < cfg->player.linestart)
 		{
-			pixel_put(&cfg->images[cfg->img], x, i, cfg->color_ceil);
+			if (in_square(cfg->port_start, cfg->port_end, vector_new(x, i)))
+				pixel_put(&cfg->images[cfg->img], x, i, cfg->color_ceil);
 			i++;
 		}
 	else
@@ -67,7 +68,8 @@ void			line_put(int x, t_config *cfg, int tex)
 	if (!cfg->options[OPT_FLOORTEXT])
 		while (i < cfg->height)
 		{
-			pixel_put(&cfg->images[cfg->img], x, i, cfg->color_floor);
+			if (in_square(cfg->port_start, cfg->port_end, vector_new(x, i)))
+				pixel_put(&cfg->images[cfg->img], x, i, cfg->color_floor);
 			i++;
 		}
 }

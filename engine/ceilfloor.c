@@ -6,7 +6,7 @@
 /*   By: jivan-de <jivan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/05 13:11:40 by jivan-de       #+#    #+#                */
-/*   Updated: 2020/02/17 15:26:28 by jivan-de      ########   odam.nl         */
+/*   Updated: 2020/03/03 17:22:25 by jivan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void		render_floor(t_config *cfg)
 	int			y;
 
 	y = 0;
-	if ((cfg->options[OPT_FLOORTEXT] || cfg->options[OPT_FLOORTEXT]))
+	if ((cfg->options[OPT_FLOORTEXT] || cfg->options[OPT_CEILTEXT]))
 	{
 		while (y <= cfg->height)
 		{
